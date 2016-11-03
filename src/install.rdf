@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   -
+   - Copyright (C) 2016 Namit Bhalla (oyenamit@gmail.com)
+   - This file is part of 'Web Storage Viewer' extension for the Firefox browser.
+
+   - This program is free software: you can redistribute it and/or modify
+   - it under the terms of the GNU General Public License as published by
+   - the Free Software Foundation, either version 3 of the License, or
+   - any later version.
+   -
+   - This program is distributed in the hope that it will be useful,
+   - but WITHOUT ANY WARRANTY; without even the implied warranty of
+   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   - GNU General Public License for more details.
+
+   - You should have received a copy of the GNU General Public License
+   - along with this program. If not, see <http://www.gnu.org/licenses/>.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+
+      <em:id>web-storage-viewer@oyenamit</em:id>
+      <em:name>Web Storage Viewer</em:name>
+      <em:description>View and manage the tracking data stored by websites on your system. This data is known by several different names: Web Storage, DOM Storage, HTML5 Storage, Session Storage and Local Storage.</em:description>
+      <em:version>0.1</em:version>
+      <em:creator>oyenamit</em:creator>
+      <em:iconURL>chrome://web-storage-viewer/skin/iconURL.png</em:iconURL>
+      <em:icon64URL>chrome://web-storage-viewer/skin/icon64URL.png</em:icon64URL>
+      <em:type>2</em:type>
+      <em:multiprocessCompatible>true</em:multiprocessCompatible>
+
+      <!-- Firefox support -->
+      <em:targetApplication>
+          <Description>
+              <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+              <em:minVersion>29.0</em:minVersion>
+              <em:maxVersion>52.0</em:maxVersion>
+          </Description>
+      </em:targetApplication>
+
+      <!-- US English localization -->
+      <em:localized>
+          <Description>
+              <em:locale>en-US</em:locale>
+              <em:name>Web Storage Viewer</em:name>
+              <em:description>View and manage the tracking data stored by websites on your system. This data is known by several different names: Web Storage, DOM Storage, HTML5 Storage, Session Storage and Local Storage.</em:description>
+              <em:creator>oyenamit</em:creator>
+              <em:translator>oyenamit</em:translator>
+          </Description>
+      </em:localized>
+  </Description>
+</RDF>
+

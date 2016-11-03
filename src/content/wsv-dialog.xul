@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+
+
+<!-- ***** BEGIN LICENSE BLOCK *****
+   -
+   - Copyright (C) 2016 Namit Bhalla (oyenamit@gmail.com)
+   - This file is part of 'Web Storage Viewer' extension for the Firefox browser.
+
+   - This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.
+
+   - Alternatively, the contents of this file may be used under the terms
+   - of the GNU General Public License Version 3 or above, as described below:
+
+   - This program is free software: you can redistribute it and/or modify
+   - it under the terms of the GNU General Public License as published by
+   - the Free Software Foundation, either version 3 of the License, or
+   - any later version.
+   -
+   - This program is distributed in the hope that it will be useful,
+   - but WITHOUT ANY WARRANTY; without even the implied warranty of
+   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   - GNU General Public License for more details.
+
+   - You should have received a copy of the GNU General Public License
+   - along with this program. If not, see <http://www.gnu.org/licenses/>.
+   -
+   - ***** END LICENSE BLOCK ***** -->
+
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?> 
+<?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css" type="text/css"?> 
+
+<!DOCTYPE dialog SYSTEM "chrome://web-storage-viewer/locale/wsv.dtd"> 
+
+<window id="wsv-storage-dialog"
+        windowtype="Browser:WebStorage"
+        class="windowDialog" 
+        title="&window.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        style="width: &window.width;; height: &window.height; ;"
+        onload="Components.utils.import( 'chrome://web-storage-viewer/content/wsv-dialog.jsm' ); WebStorageViewerDlg.init( this ); WebStorageViewerDlg.onLoad();"
+        onunload="WebStorageViewerDlg.onUnload(); Components.utils.unload( 'chrome://web-storage-viewer/content/wsv-dialog.jsm' );"
+        persist="screenX screenY width height"
+        onkeypress="WebStorageViewerDlg.onWindowKeyPress( event );">
+
+     <keyset>
+       <key key="&windowClose.key;" modifiers="accel" oncommand="window.close();"/>
+       <key key="&focusSearch1.key;" modifiers="accel" oncommand="document.getElementById( 'filter' ).focus();"/>
+       <key key="&focusSearch2.key;" modifiers="accel" oncommand="document.getElementById( 'filter' ).focus();"/>
+     </keyset>
+
+    <vbox flex="1" class="contentPane largeDialogContainer">
+       <hbox align="center">
+          <label accesskey="&filter.accesskey;" control="filter">&filter.label;</label>
+          <textbox type="search" id="filter" flex="1"
+                aria-controls="webStorageList"  
+                oncommand="WebStorageViewerDlg.onFilter();"/>
+       </hbox>
+       <separator class="thin"/>
+       <label control="webStorageList" id="webStorageIntro" value="&webstorageonsystem.label;"/>
+       <separator class="thin"/>
+       <tree id="webStorageList" flex="1" style="height: 10em;"
+             onkeypress="WebStorageViewerDlg.onItemKeyPress( event );"
+             onselect="WebStorageViewerDlg.onItemSelected();"
+             hidecolumnpicker="true" seltype="single">
+          <treecols>
+             <treecol id="domainCol" label="&webstoragedomain.label;" flex="1" primary="true"
+                   persist="width" onclick="WebStorageViewerDlg.onSort( 'rawHost' );"/>
+             <splitter class="tree-splitter"/>
+             <treecol id="nameCol" label="&webstorageitemname.label;" flex="1"
+                   persist="width" onclick="WebStorageViewerDlg.onSort( 'name' );"/>
+             <splitter class="tree-splitter"/>
+             <treecol id="valueCol" label="&webstorageitemvalue.label;" flex="2"
+                   persist="width" onclick="WebStorageViewerDlg.onSort( 'value' );"/>
+          </treecols>
+          <!-- This is a hack since I am too lazy to duplicate Firefox's built-in CSS. 
+                In Firefox's preferences.css, there are CSS rules that apply icons for element with ID = "cookiesChildren" (treechildren element in Cookies.xul).
+                I should have used a different id ("webStorageChildren") and copied the same CSS rules into my custom stylesheet.
+                Instead, I have taken the easier way of setting the ID of my element to "cookiesChildren" ;) -->
+          <treechildren id="cookiesChildren"/>
+       </tree>
+    </vbox>
+   <separator class="thin"/>
+    <hbox align="end">
+       <hbox class="actionButtons" flex="1">
+          <button id="removeSelectedItem" disabled="true" icon="clear"
+                label="&button.removeSelectedItem.label;" accesskey="&button.removeSelectedItem.accesskey;"
+                oncommand="WebStorageViewerDlg.onRemoveSelectedItem();"/>
+          <button id="removeAllItems" disabled="true" icon="clear"
+                label="&button.removeAllItems.label;" accesskey="&button.removeAllItems.accesskey;"
+                oncommand="WebStorageViewerDlg.onRemoveAllItems();"/>
+          <button id="refresh" disabled="false" icon="clear"
+                label="&button.refresh.label;" accesskey="&button.refresh.accesskey;"
+                oncommand="WebStorageViewerDlg.onRefresh();"/>
+          <spacer flex="1"/>
+          <button oncommand="close();" icon="close"
+                 label="&button.close.label;" accesskey="&button.close.accesskey;"/>
+       </hbox>
+    </hbox>
+</window>
+

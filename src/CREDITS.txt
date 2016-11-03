@@ -1,0 +1,14 @@
+This extension uses code from the Cookies implementation in Firefox browser.
+See the following source code files for reference:
+https://dxr.mozilla.org/mozilla-central/source/browser/components/preferences/cookies.xul
+https://dxr.mozilla.org/mozilla-central/source/browser/components/preferences/cookies.js
+https://dxr.mozilla.org/mozilla-central/source/browser/locales/en-US/chrome/browser/preferences/cookies.dtd
+
+The source code files in this extension that contain code from Firefox implementation have been
+released under Mozilla Public License 2.0 as well as GNU General General Public License version 3 or later.
+
+-------------------------------------------------------------------------------------------------------------
+
+The icons used in this software were designed by Sean (http://gakuseisean.deviantart.com/)
+and were downloaded from http://findicons.com/icon/86727/web_database?id=86840
+
